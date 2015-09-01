@@ -8,10 +8,7 @@ import retrofit.converter.GsonConverter;
 
 public class EventRestClient {
 
-    // TODO make build variants
     private static final String default_service_url = "https://mfg-eventapp.herokuapp.com";
-    //private static final String default_service_url = "http://10.0.3.2:8080"; // for genymotion emulator
-    //private static final String default_service_url = "http://10.0.2.2:8080"; // for standard emulator
 
 
     RestAdapter restAdapter;
