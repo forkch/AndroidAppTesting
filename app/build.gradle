@@ -21,10 +21,29 @@ android {
 }
 
 dependencies {
+    final SUPPORT_LIBRARY_VERSION = '23.0.0'
+
+    compile "com.android.support:appcompat-v7:$SUPPORT_LIBRARY_VERSION"
+    compile "com.android.support:recyclerview-v7:$SUPPORT_LIBRARY_VERSION"
+
+    compile 'com.squareup.retrofit:retrofit:2.0.0-beta1'
+
     testCompile "junit:junit:4.12"
     testCompile "org.robolectric:robolectric:3.0"
 
-    androidTestCompile 'com.android.support.test:runner:0.3'
-    androidTestCompile 'com.android.support.test:rules:0.3'
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2'
+    androidTestCompile ('com.android.support.test:runner:0.3') {
+        exclude group: 'support-annotations'
+    }
+
+    androidTestCompile ('com.android.support.test:rules:0.3') {
+        exclude group: 'support-annotations'
+    }
+
+    androidTestCompile ('com.android.support.test.espresso:espresso-core:2.2') {
+        exclude group: 'support-annotations'
+    }
+
+    androidTestCompile ('com.android.support.test.espresso:espresso-contrib:2.2') {
+        exclude group: 'support-annotations'
+    }
 }
