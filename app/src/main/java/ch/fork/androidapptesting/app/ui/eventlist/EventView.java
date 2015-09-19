@@ -1,19 +1,19 @@
 package ch.fork.androidapptesting.app.ui.eventlist;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import java.util.Date;
-import java.util.Set;
+import com.google.common.base.Joiner;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import ch.fork.androidapptesting.R;
-import ch.fork.androidapptesting.app.model.Participant;
+import ch.fork.androidapptesting.app.model.Event;
 
 
 /**
@@ -25,8 +25,6 @@ public class EventView extends FrameLayout {
     TextView tvTitle;
     @Bind(R.id.location_date)
     TextView tvLocationDate;
-    @Bind(R.id.tvDescription)
-    TextView tvDescription;
     @Bind(R.id.tvParticipants)
     TextView tvParticipants;
 
@@ -44,19 +42,13 @@ public class EventView extends FrameLayout {
         ButterKnife.bind(this, inflate);
     }
 
-    public void setTitle(String title) {
-        tvTitle.setText(title);
+    public void setEvent(Event event) {
+        tvTitle.setText(event.getTitle());
+        tvLocationDate.setText(String.format("%s, %s", event.getLocation(), event.getDate().toString()));
+        tvParticipants.setText(createParticipantsList(event));
     }
 
-    public void setLocationAndDate(String location, Date date) {
-        tvLocationDate.setText(String.format("%s, %s", location, date.toString()));
-    }
-
-    public void setDescription(String description) {
-        tvDescription.setText(description);
-    }
-
-    public void setParticipants(Set<Participant> participants) {
-        tvParticipants.setText(participants.toString());
+    private String createParticipantsList(Event event) {
+        return "Participants: " + Joiner.on(", ").join(event.getParticipants());
     }
 }

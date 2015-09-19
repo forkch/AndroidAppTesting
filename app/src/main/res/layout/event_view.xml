@@ -38,16 +38,6 @@
                 tools:text="Schlieren 12.4.2015"/>
 
             <TextView
-                android:id="@+id/tvDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:ellipsize="end"
-                android:lines="3"
-                android:textColor="@android:color/black"
-                tools:text="Description "/>
-
-            <TextView
                 android:id="@+id/tvParticipants"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

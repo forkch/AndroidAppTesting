@@ -23,7 +23,7 @@ public class Participant implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("name: %s email: %s", name, email);
+        return String.format("%s (%s)", name, email);
     }
 
     @Override

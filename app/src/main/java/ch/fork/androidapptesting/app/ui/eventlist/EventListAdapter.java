@@ -39,10 +39,8 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
     @Override
     public void onBindViewHolder(final EventViewHolder eventViewHolder, int i) {
         final Event event = eventList.get(i);
-        eventViewHolder.eventView.setTitle(event.getTitle());
-        eventViewHolder.eventView.setLocationAndDate(event.getLocation(), event.getDate());
-        eventViewHolder.eventView.setDescription(event.getDescription());
 
+        eventViewHolder.eventView.setEvent(event);
         eventViewHolder.eventView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,7 +48,6 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
             }
         });
 
-        eventViewHolder.eventView.setParticipants(event.getParticipants());
         eventViewHolder.eventView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     }
 
