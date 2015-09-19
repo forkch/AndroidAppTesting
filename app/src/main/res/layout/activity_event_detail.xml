@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_awesome_toolbar"
+        style="@style/Widget.AndroidAppTesting.ActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize" />
+
+
+    <TextView
+        android:id="@+id/activity_detail_title"
+        style="@android:style/TextAppearance.Material.Title"
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:background="@color/primary"
+        android:elevation="4dp"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="2"
+        android:paddingLeft="48dp"
+        android:paddingRight="48dp"
+        android:textColor="@color/icons"
+        tools:text="Year End Party" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:columnCount="2">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:layout_marginTop="8dp"
+                android:background="@android:drawable/ic_menu_today" />
+
+            <TextView
+                android:id="@+id/activity_detail_date"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:paddingEnd="12dp"
+                android:paddingStart="12dp"
+                tools:ignore="NewApi"
+                tools:text="2014-02-19 20:00" />
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginTop="8dp"
+                android:background="@android:drawable/ic_menu_directions" />
+
+            <TextView
+                android:id="@+id/activity_detail_location"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginTop="8dp"
+                android:paddingEnd="12dp"
+                android:paddingStart="12dp"
+                tools:ignore="NewApi"
+                tools:text="Schlieren" />
+
+            <TextView
+                android:id="@+id/activity_detail_description"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_columnSpan="2"
+                android:layout_gravity="start|center_vertical"
+                android:layout_marginStart="44dp"
+                android:layout_marginTop="8dp"
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." />
+
+            <Button
+                android:id="@+id/activity_detail_participate"
+                style="@android:style/Widget.Material.Button.Borderless.Colored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnSpan="2"
+                android:layout_marginTop="8dp"
+                android:text="Participate" />
+
+        </GridLayout>
+    </ScrollView>
+
+
+</LinearLayout>

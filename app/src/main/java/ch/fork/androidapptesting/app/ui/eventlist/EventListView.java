@@ -11,4 +11,6 @@ public interface EventListView {
     void openDetailsForEvent(Event event);
 
     void showEvents(List<Event> allEvents);
+
+    void loadingEventsFaild();
 }

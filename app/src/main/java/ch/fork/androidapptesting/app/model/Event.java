@@ -16,7 +16,9 @@ public class Event {
     private Date date;
     private Set<Participant> participants = new HashSet<>();
 
-    public Event() {
+    public Event(long id, String title) {
+        this.id = id;
+        this.title = title;
 
     }
 

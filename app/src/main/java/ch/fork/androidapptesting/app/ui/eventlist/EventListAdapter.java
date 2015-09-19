@@ -1,22 +1,15 @@
 package ch.fork.androidapptesting.app.ui.eventlist;
 
 import android.content.Context;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-
+import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import androidapptesting.fork.ch.androidapptesting.R;
 import ch.fork.androidapptesting.app.model.Event;
-import ch.fork.androidapptesting.app.model.Participant;
 
 public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventViewHolder> {
 
@@ -24,7 +17,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
     private List<Event> eventList = new ArrayList<>();
     private final EventListView eventListView;
 
-    public EventListAdapter(Context context,  EventListView eventListView) {
+    public EventListAdapter(Context context, EventListView eventListView) {
         this.context = context;
         this.eventListView = eventListView;
     }
@@ -44,52 +37,36 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
     }
 
     @Override
-
     public void onBindViewHolder(final EventViewHolder eventViewHolder, int i) {
         final Event event = eventList.get(i);
-        eventViewHolder.title.setText(event.getTitle());
-        eventViewHolder.locationDate.setText(event.getLocation() + ", " + event.getDate());
-        eventViewHolder.description.setText(event.getDescription());
+        eventViewHolder.eventView.setTitle(event.getTitle());
+        eventViewHolder.eventView.setLocationAndDate(event.getLocation(), event.getDate());
+        eventViewHolder.eventView.setDescription(event.getDescription());
 
-//        eventViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                eventListView.openDetailsForEvent(event);
-//            }
-//        });
+        eventViewHolder.eventView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                eventListView.openDetailsForEvent(event);
+            }
+        });
 
-        String participantsText = "Keine Teilnehmer";
-        if (event.getParticipants() != null) {
-            List<Participant> participants = new ArrayList<>(event.getParticipants());
-            participantsText = participants.size() + " Teilnehmer";
-        }
-        eventViewHolder.participants.setText(participantsText);
+        eventViewHolder.eventView.setParticipants(event.getParticipants());
+        eventViewHolder.eventView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     }
 
 
     @Override
     public EventViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.event_view, viewGroup, false);
-        return new EventViewHolder(itemView);
+        return new EventViewHolder(new EventView(context));
     }
 
     public static class EventViewHolder extends RecyclerView.ViewHolder {
-        protected TextView title;
-        protected TextView locationDate;
-        protected TextView description;
-        protected TextView participants;
-        protected Button details;
-        protected ImageView eventImage;
-        private final CardView cardView;
 
-        public EventViewHolder(View v) {
+        private final EventView eventView;
+
+        public EventViewHolder(EventView v) {
             super(v);
-            cardView = (CardView) v.findViewById(R.id.cvEvent);
-            title = (TextView) v.findViewById(R.id.title);
-            locationDate = (TextView) v.findViewById(R.id.location_date);
-            description = (TextView) v.findViewById(R.id.description);
-            participants = (TextView) v.findViewById(R.id.participants);
-            eventImage = (ImageView) v.findViewById(R.id.image);
+            eventView = v;
         }
     }
 }

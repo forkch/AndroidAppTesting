@@ -1,24 +1,25 @@
-package ch.fork.androidapptesting.app.data;
+package ch.fork.androidapptesting.app.data.rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import ch.fork.androidapptesting.app.data.rest.EventRetrofitService;
 import retrofit.RestAdapter;
 import retrofit.converter.GsonConverter;
 
-public class EventRestClient {
+public class RetrofitClient {
 
     private static final String default_service_url = "https://mfg-eventapp.herokuapp.com";
 
 
     RestAdapter restAdapter;
-    EventRestService eventRestService;
+    EventRetrofitService eventRetrofitService;
 
-    public EventRestClient() {
+    RetrofitClient() {
         this(default_service_url);
     }
 
-    public EventRestClient(final String endpoint) {
+    RetrofitClient(final String endpoint) {
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
                 .create();
@@ -27,10 +28,10 @@ public class EventRestClient {
                 .setConverter(new GsonConverter(gson))
                 .setLogLevel(RestAdapter.LogLevel.FULL)
                 .build();
-        eventRestService = restAdapter.create(EventRestService.class);
+        eventRetrofitService = restAdapter.create(EventRetrofitService.class);
     }
 
-    public EventRestService getEventRestService() {
-        return eventRestService;
+    public EventRetrofitService getEventRetrofitService() {
+        return eventRetrofitService;
     }
 }
