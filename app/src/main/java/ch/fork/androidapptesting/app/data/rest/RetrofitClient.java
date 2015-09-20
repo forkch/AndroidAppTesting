@@ -3,7 +3,6 @@ package ch.fork.androidapptesting.app.data.rest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import ch.fork.androidapptesting.app.data.rest.EventRetrofitService;
 import retrofit.RestAdapter;
 import retrofit.converter.GsonConverter;
 

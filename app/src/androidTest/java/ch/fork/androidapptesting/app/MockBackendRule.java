@@ -13,7 +13,6 @@ import java.util.List;
 import ch.fork.androidapptesting.app.data.EventService;
 import ch.fork.androidapptesting.app.model.Event;
 import rx.Observable;
-import rx.Scheduler;
 import rx.schedulers.Schedulers;
 
 /**
@@ -21,19 +20,22 @@ import rx.schedulers.Schedulers;
  */
 public class MockBackendRule implements TestRule {
 
+    public static final Event THE_EVENT = new Event(1, "ZEDays 2015", "Stuttgart", "description",
+            new Date());
     private EventService mockEventService = new EventService() {
         @Override
         public Observable<List<Event>> getAllEvents() {
             final List<Event> events = Lists.newArrayList(THE_EVENT);
-            return Observable.just(events).subscribeOn(Schedulers.immediate());
+            return Observable.just(events)
+                             .subscribeOn(Schedulers.immediate());
         }
 
         @Override
         public Observable<Event> getEvent(long eventId) {
-            return Observable.just(THE_EVENT).subscribeOn(Schedulers.immediate());
+            return Observable.just(THE_EVENT)
+                             .subscribeOn(Schedulers.immediate());
         }
     };
-    public static final Event THE_EVENT = new Event(1, "ZEDays 2015", "Stuttgart", "description", new Date());
 
     public EventService getMockEventService() {
         return mockEventService;

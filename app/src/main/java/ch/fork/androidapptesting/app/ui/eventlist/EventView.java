@@ -37,13 +37,15 @@ public class EventView extends FrameLayout {
     }
 
     private void init() {
-        final View inflate = LayoutInflater.from(getContext()).inflate(R.layout.event_view, this);
+        final View inflate = LayoutInflater.from(getContext())
+                                           .inflate(R.layout.event_view, this);
         ButterKnife.bind(this, inflate);
     }
 
     public void setEvent(Event event) {
         tvTitle.setText(event.getTitle());
-        tvLocationDate.setText(String.format("%s, %s", event.getLocation(), event.getDate().toString()));
+        tvLocationDate.setText(String.format("%s, %s", event.getLocation(), event.getDate()
+                                                                                 .toString()));
         tvParticipants.setText(createParticipantsList(event));
     }
 
@@ -52,6 +54,7 @@ public class EventView extends FrameLayout {
                  .isEmpty()) {
             return "No participants yet!";
         }
-        return "Participants: " + Joiner.on(", ").join(event.getParticipants());
+        return "Participants: " + Joiner.on(", ")
+                                        .join(event.getParticipants());
     }
 }

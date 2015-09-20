@@ -14,8 +14,8 @@ import ch.fork.androidapptesting.app.model.Event;
 public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventViewHolder> {
 
     private final Context context;
-    private List<Event> eventList = new ArrayList<>();
     private final EventListView eventListView;
+    private List<Event> eventList = new ArrayList<>();
 
     public EventListAdapter(Context context, EventListView eventListView) {
         this.context = context;
@@ -32,8 +32,8 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
     }
 
     @Override
-    public int getItemCount() {
-        return eventList.size();
+    public EventViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        return new EventViewHolder(new EventView(context));
     }
 
     @Override
@@ -48,13 +48,14 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
             }
         });
 
-        eventViewHolder.eventView.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        eventViewHolder.eventView.setLayoutParams(
+                new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT));
     }
 
-
     @Override
-    public EventViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        return new EventViewHolder(new EventView(context));
+    public int getItemCount() {
+        return eventList.size();
     }
 
     public static class EventViewHolder extends RecyclerView.ViewHolder {

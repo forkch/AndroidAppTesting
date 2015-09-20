@@ -43,7 +43,8 @@ public class EventListActivity extends AppCompatActivity implements EventListVie
 
     @Override
     public void loadingEventsFaild() {
-        Toast.makeText(this, "Loading events failed", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Loading events failed", Toast.LENGTH_SHORT)
+             .show();
     }
 
     @Override
@@ -55,11 +56,14 @@ public class EventListActivity extends AppCompatActivity implements EventListVie
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Events");
 
-        presenter = new EventListPresenter(this, AndroidAppTestingApp.get(this).getEventService(), AndroidSchedulers.mainThread());
+        presenter = new EventListPresenter(this, AndroidAppTestingApp.get(this)
+                                                                     .getEventService(),
+                AndroidSchedulers.mainThread());
 
         eventListAdapter = new EventListAdapter(this, this);
         rvEventList = (RecyclerView) findViewById(R.id.rvEventList);
-        rvEventList.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        rvEventList.setLayoutManager(
+                new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rvEventList.setAdapter(eventListAdapter);
     }
 

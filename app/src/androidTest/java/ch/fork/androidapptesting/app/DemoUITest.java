@@ -27,7 +27,8 @@ import static org.hamcrest.core.AllOf.allOf;
 public class DemoUITest {
 
     @Rule
-    public final ActivityTestRule<EventListActivity> activityTestRule = new ActivityTestRule<>(EventListActivity.class);
+    public final ActivityTestRule<EventListActivity> activityTestRule = new ActivityTestRule<>(
+            EventListActivity.class);
 
     @Rule
     public final MockBackendRule mockBackendRule = new MockBackendRule();
@@ -36,9 +37,11 @@ public class DemoUITest {
     public void test() {
 
         onView(withId(R.id.my_awesome_toolbar)).check(matches(hasDescendant(withText("Events"))));
-        onView(withId(R.id.rvEventList)).perform(RecyclerViewActions.actionOnItem(hasDescendant(withText("ZEDays 2015")), click()));
+        onView(withId(R.id.rvEventList)).perform(
+                RecyclerViewActions.actionOnItem(hasDescendant(withText("ZEDays 2015")), click()));
 
 
-        onView(allOf(withId(R.id.activity_detail_title), withText("ZEDays 2015"))).check(matches(isDisplayed()));
+        onView(allOf(withId(R.id.activity_detail_title), withText("ZEDays 2015"))).check(
+                matches(isDisplayed()));
     }
 }

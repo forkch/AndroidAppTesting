@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,10 +21,8 @@ import rx.android.schedulers.AndroidSchedulers;
 public class EventDetailActivity extends AppCompatActivity implements EventDetailsView {
 
     public static final String EXTRA_EVENT_ID = "EVENT_ID";
-    private EventDetailsPresenter presenter;
     @Bind(R.id.my_awesome_toolbar)
     Toolbar toolbar;
-
     @Bind(R.id.activity_detail_title)
     TextView tvTitle;
     @Bind(R.id.activity_detail_date)
@@ -34,6 +31,7 @@ public class EventDetailActivity extends AppCompatActivity implements EventDetai
     TextView tvLocation;
     @Bind(R.id.activity_detail_description)
     TextView tvDescription;
+    private EventDetailsPresenter presenter;
 
     @OnClick(R.id.activity_detail_participate)
     public void onParticipateClick() {
@@ -52,7 +50,9 @@ public class EventDetailActivity extends AppCompatActivity implements EventDetai
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        presenter = new EventDetailsPresenter(this, AndroidAppTestingApp.get(this).getEventService(), AndroidSchedulers.mainThread());
+        presenter = new EventDetailsPresenter(this, AndroidAppTestingApp.get(this)
+                                                                        .getEventService(),
+                AndroidSchedulers.mainThread());
     }
 
     @Override
@@ -70,14 +70,16 @@ public class EventDetailActivity extends AppCompatActivity implements EventDetai
 
     @Override
     public void eventNotFound() {
-        Toast.makeText(this, "Event not found", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Event not found", Toast.LENGTH_SHORT)
+             .show();
         finish();
     }
 
     @Override
     public void setEvent(Event event) {
         tvTitle.setText(event.getTitle());
-        tvDate.setText(event.getDate().toString());
+        tvDate.setText(event.getDate()
+                            .toString());
         tvLocation.setText(event.getLocation());
         tvDescription.setText(event.getDescription());
     }

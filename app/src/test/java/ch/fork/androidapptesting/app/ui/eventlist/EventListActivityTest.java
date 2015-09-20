@@ -30,7 +30,10 @@ public class EventListActivityTest {
 
     @Test
     public void when_event_is_clicked_it_should_start_intent() {
-        final EventListActivity eventListActivity = Robolectric.buildActivity(EventListActivity.class).create().get();
+        final EventListActivity eventListActivity = Robolectric.buildActivity(
+                EventListActivity.class)
+                                                               .create()
+                                                               .get();
 
         final Event event = new Event(1, "ZEDays 2015", "Stuttgart", "a gathering of Zühlke ",
                 new Date());

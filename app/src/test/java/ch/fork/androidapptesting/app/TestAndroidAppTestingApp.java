@@ -1,8 +1,5 @@
 package ch.fork.androidapptesting.app;
 
-import android.app.Application;
-import android.content.Context;
-
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.robolectric.TestLifecycleApplication;
@@ -10,7 +7,6 @@ import org.robolectric.TestLifecycleApplication;
 import java.lang.reflect.Method;
 
 import ch.fork.androidapptesting.app.data.EventService;
-import ch.fork.androidapptesting.app.data.rest.EventServiceRestImpl;
 
 /**
  * Created by bmu on 01.09.15.

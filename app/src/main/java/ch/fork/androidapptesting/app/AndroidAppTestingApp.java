@@ -23,7 +23,7 @@ public class AndroidAppTestingApp extends Application {
     }
 
     public EventService getEventService() {
-        if(eventService == null) {
+        if (eventService == null) {
             eventService = new EventServiceRestImpl();
         }
         return eventService;
