@@ -7,6 +7,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import ch.fork.androidapptesting.app.data.EventService;
@@ -40,7 +41,8 @@ public class EventListPresenterTest {
     public void when_getting_events_it_shoud_display_them_on_the_view() {
         // given
         testee = new EventListPresenter(eventListViewMock, eventServiceMock, Schedulers.immediate());
-        final ArrayList<Event> expectedEvents = Lists.newArrayList(new Event(1, "ZEDays 2015"));
+        final ArrayList<Event> expectedEvents = Lists.newArrayList(
+                new Event(1, "ZEDays 2015", "Stuttgart", "a gathering of Zühlke ", new Date()));
         when(eventServiceMock.getAllEvents()).thenReturn(Observable.<List<Event>>just(expectedEvents));
 
         // when

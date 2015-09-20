@@ -1,7 +1,6 @@
 package ch.fork.androidapptesting.app.ui.eventlist;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,6 +48,10 @@ public class EventView extends FrameLayout {
     }
 
     private String createParticipantsList(Event event) {
+        if (event.getParticipants()
+                 .isEmpty()) {
+            return "No participants yet!";
+        }
         return "Participants: " + Joiner.on(", ").join(event.getParticipants());
     }
 }

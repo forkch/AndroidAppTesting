@@ -16,10 +16,13 @@ public class Event {
     private Date date;
     private Set<Participant> participants = new HashSet<>();
 
-    public Event(long id, String title) {
+    public Event(long id, String title, String location, String description, Date date) {
         this.id = id;
         this.title = title;
 
+        this.location = location;
+        this.description = description;
+        this.date = date;
     }
 
     public long getId() {

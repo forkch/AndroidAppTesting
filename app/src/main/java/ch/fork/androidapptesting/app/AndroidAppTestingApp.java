@@ -13,13 +13,13 @@ public class AndroidAppTestingApp extends Application {
 
     private EventService eventService;
 
+    public static AndroidAppTestingApp get(Context context) {
+        return (AndroidAppTestingApp) context.getApplicationContext();
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
-    }
-
-    public static AndroidAppTestingApp get(Context context) {
-        return (AndroidAppTestingApp) context.getApplicationContext();
     }
 
     public EventService getEventService() {
@@ -27,5 +27,9 @@ public class AndroidAppTestingApp extends Application {
             eventService = new EventServiceRestImpl();
         }
         return eventService;
+    }
+
+    public void setEventService(EventService eventService) {
+        this.eventService = eventService;
     }
 }
