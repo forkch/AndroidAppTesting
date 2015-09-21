@@ -26,20 +26,20 @@ import static org.assertj.android.api.Assertions.assertThat;
  */
 @RunWith(RobolectricGradleTestRunner.class)
 @Config(constants = BuildConfig.class, sdk = DefaultConfig.EMULATE_SDK, manifest = DefaultConfig.MANIFEST)
-public class EventListActivityTest {
+public class EventDetailsActivityTest {
 
     @Test
-    public void when_event_is_clicked_it_should_start_intent() {
-        final EventListActivity eventListActivity =
-                Robolectric.buildActivity(EventListActivity.class)
+    public void when_event_location_is_clicked_it_should_start_intent_to_google_maps() {
+        final EventDetailActivity eventDetailActivity =
+                Robolectric.buildActivity(EventDetailActivity.class)
                            .create()
                            .get();
 
         final Event event = new Event(1, "ZEDays 2015", "Stuttgart", "a gathering of Zühlke ",
                 new Date());
-        eventListActivity.openDetailsForEvent(event);
-
-        final ShadowActivity shadowActivity = Shadows.shadowOf(eventListActivity);
+        eventDetailActivity.setEvent(event);
+        
+        final ShadowActivity shadowActivity = Shadows.shadowOf(eventDetailActivity);
         final Intent firedIntent = shadowActivity.getNextStartedActivity();
         assertThat(firedIntent).isNotNull()
                                .hasExtra("EVENT_ID")

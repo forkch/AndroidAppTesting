@@ -52,7 +52,7 @@ public class EventListActivity extends AppCompatActivity implements EventListVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eventlist);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.my_awesome_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Events");
 

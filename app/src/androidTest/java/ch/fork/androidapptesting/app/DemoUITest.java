@@ -36,12 +36,13 @@ public class DemoUITest {
     @Test
     public void test() {
 
-        onView(withId(R.id.my_awesome_toolbar)).check(matches(hasDescendant(withText("Events"))));
+        onView(withId(R.id.toolbar)).check(matches(hasDescendant(withText("Events"))));
         onView(withId(R.id.rvEventList)).perform(
                 RecyclerViewActions.actionOnItem(hasDescendant(withText("ZEDays 2015")), click()));
-
 
         onView(allOf(withId(R.id.activity_detail_title), withText("ZEDays 2015"))).check(
                 matches(isDisplayed()));
     }
+
+
 }
