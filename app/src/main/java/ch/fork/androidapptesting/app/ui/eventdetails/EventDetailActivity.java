@@ -1,9 +1,11 @@
 package ch.fork.androidapptesting.app.ui.eventdetails;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +23,7 @@ import rx.android.schedulers.AndroidSchedulers;
 public class EventDetailActivity extends AppCompatActivity implements EventDetailsView {
 
     public static final String EXTRA_EVENT_ID = "EVENT_ID";
-    @Bind(R.id.my_awesome_toolbar)
+    @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.activity_detail_title)
     TextView tvTitle;
@@ -53,6 +55,7 @@ public class EventDetailActivity extends AppCompatActivity implements EventDetai
         presenter = new EventDetailsPresenter(this, AndroidAppTestingApp.get(this)
                                                                         .getEventService(),
                 AndroidSchedulers.mainThread());
+
     }
 
     @Override
@@ -76,11 +79,20 @@ public class EventDetailActivity extends AppCompatActivity implements EventDetai
     }
 
     @Override
-    public void setEvent(Event event) {
+    public void setEvent(final Event event) {
         tvTitle.setText(event.getTitle());
         tvDate.setText(event.getDate()
                             .toString());
         tvLocation.setText(event.getLocation());
+        tvLocation.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                Intent googleMapsIntent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("geo:0,0?q=" + event.getLocation()));
+                googleMapsIntent.setPackage("com.google.android.apps.maps");
+                startActivity(googleMapsIntent);
+
+            }
+        });
         tvDescription.setText(event.getDescription());
     }
 }
