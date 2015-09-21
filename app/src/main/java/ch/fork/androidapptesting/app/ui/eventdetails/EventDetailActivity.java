@@ -23,6 +23,7 @@ import rx.android.schedulers.AndroidSchedulers;
 public class EventDetailActivity extends AppCompatActivity implements EventDetailsView {
 
     public static final String EXTRA_EVENT_ID = "EVENT_ID";
+    public static final String GOOGLE_MAPS_URI_GEO_PREFIX = "geo:0,0?q=";
     @Bind(R.id.toolbar)
     Toolbar toolbar;
     @Bind(R.id.activity_detail_title)
@@ -87,7 +88,7 @@ public class EventDetailActivity extends AppCompatActivity implements EventDetai
         tvLocation.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 Intent googleMapsIntent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("geo:0,0?q=" + event.getLocation()));
+                        Uri.parse(GOOGLE_MAPS_URI_GEO_PREFIX + event.getLocation()));
                 googleMapsIntent.setPackage("com.google.android.apps.maps");
                 startActivity(googleMapsIntent);
 
