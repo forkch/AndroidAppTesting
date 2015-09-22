@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AndroidAppTesting</string>
+    <string name="eventdetail_enter_name_title">Please give us your name</string>
+    <string name="eventdetail_enter_name_hint">What is your name?</string>
+    <string name="eventdetail_enter_name_prefill"/>
+    <string name="eventdetail_enter_name_cancelled">Without name you can\'t participate, sorry!</string>
+    <string name="eventdetail_thanks_for_participating">Thanks for participating!</string>
 </resources>

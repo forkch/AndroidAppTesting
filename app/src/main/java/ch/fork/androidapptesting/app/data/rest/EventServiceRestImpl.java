@@ -4,6 +4,7 @@ import java.util.List;
 
 import ch.fork.androidapptesting.app.data.EventService;
 import ch.fork.androidapptesting.app.model.Event;
+import ch.fork.androidapptesting.app.model.Participant;
 import rx.Observable;
 
 /**
@@ -27,5 +28,10 @@ public class EventServiceRestImpl implements EventService {
     @Override
     public Observable<Event> getEvent(long eventId) {
         return eventRetrofitService.getEvent(eventId);
+    }
+
+    @Override
+    public Observable<Event> participate(long eventId, Participant participant) {
+        return eventRetrofitService.participate(eventId, participant);
     }
 }
