@@ -50,40 +50,9 @@ public class DemoUITest {
 
     @Test
     public void happy_path() {
-
-        onView(withId(R.id.toolbar))
-                .check(matches(hasDescendant(withText("Events"))));
-        onView(withId(R.id.rvEventList))
-                .perform(RecyclerViewActions.actionOnItem(
-                        hasDescendant(withText("ZEDays 2015")), click()));
-
-        onView(allOf(withId(R.id.tvEventTitle), withText("ZEDays 2015")))
-                .check(matches(isDisplayed()));
-
-        onView(withId(R.id.btnEventParticipate)).perform(click());
-        onView(allOf(withId(R.id.title), withText(R.string.eventdetail_enter_name_title)))
-                .check(matches(isDisplayed()));
-
-        onView(withId(android.R.id.input)).perform(typeText("Benjamin"));
-        onView(withId(R.id.buttonDefaultPositive)).perform(click());
-        Espresso.pressBack();
-
-        onView(withTextContains("Benjamin@zedays2015.com")).check(matches(isDisplayed()));
-
+        // TODO
     }
 
-    private Matcher<View> withTextContains(String containedText) {
-        return new BoundedMatcher<View, TextView>(TextView.class) {
-
-            @Override public void describeTo(Description description) {
-                description.appendText("with text containing: " + containedText);
-            }
-
-            @Override protected boolean matchesSafely(TextView item) {
-                return item.getText().toString().contains(containedText);
-            }
-        };
-    }
 
 
 }
