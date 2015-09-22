@@ -26,32 +26,20 @@ public class EventListPresenterTest {
 
     private EventListPresenter testee;
 
-    @Mock
-    private EventService eventServiceMock;
-
-    @Mock
-    private EventListView eventListViewMock;
-
+    // TODO mocks
     @Before
     public void setup() {
-        MockitoAnnotations.initMocks(this);
+        // TODO mocks
     }
 
     @Test
     public void when_getting_events_it_shoud_display_them_on_the_view() {
+        // TODO
         // given
-        testee = new EventListPresenter(eventListViewMock, eventServiceMock,
-                Schedulers.immediate());
-        final ArrayList<Event> expectedEvents = Lists.newArrayList(
-                new Event(1, "ZEDays 2015", "Stuttgart", "a gathering of Zühlke ", new Date()));
-        when(eventServiceMock.getAllEvents()).thenReturn(
-                Observable.<List<Event>>just(expectedEvents));
 
         // when
-        testee.loadEvents();
 
         // then
-        verify(eventListViewMock).showEvents(eq(expectedEvents));
     }
 
 }
