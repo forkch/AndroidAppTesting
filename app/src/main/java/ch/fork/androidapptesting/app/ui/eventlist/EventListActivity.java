@@ -54,7 +54,9 @@ public class EventListActivity extends AppCompatActivity implements EventListVie
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Events");
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle("Events");
+        }
 
         presenter = new EventListPresenter(this, AndroidAppTestingApp.get(this)
                                                                      .getEventService(),

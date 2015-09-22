@@ -133,14 +133,12 @@ public class EventDetailActivity extends AppCompatActivity implements EventDetai
         tvDate.setText(event.getDate()
                             .toString());
         tvLocation.setText(event.getLocation());
-        tvLocation.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                Intent googleMapsIntent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse(GOOGLE_MAPS_URI_GEO_PREFIX + event.getLocation()));
-                googleMapsIntent.setPackage("com.google.android.apps.maps");
-                startActivity(googleMapsIntent);
+        tvLocation.setOnClickListener(v -> {
+            Intent googleMapsIntent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse(GOOGLE_MAPS_URI_GEO_PREFIX + event.getLocation()));
+            googleMapsIntent.setPackage("com.google.android.apps.maps");
+            startActivity(googleMapsIntent);
 
-            }
         });
         tvDescription.setText(event.getDescription());
     }
