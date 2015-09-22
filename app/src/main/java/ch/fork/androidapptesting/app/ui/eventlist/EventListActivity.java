@@ -15,34 +15,33 @@ import ch.fork.androidapptesting.app.AndroidAppTestingApp;
 import ch.fork.androidapptesting.app.data.EventService;
 import ch.fork.androidapptesting.app.model.Event;
 import ch.fork.androidapptesting.app.ui.eventdetails.EventDetailActivity;
-import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * Created by bmu on 01.09.2015.
  */
-public class EventListActivity extends AppCompatActivity {
+public class EventListActivity extends AppCompatActivity implements EventListView {
 
-    private EventListPresenter presenter;
     private RecyclerView rvEventList;
     private EventListAdapter eventListAdapter;
     private EventService eventService;
+    private EventListPresenter eventListPresenter;
 
-    public void openDetailsForEvent(Event event) {
+    @Override public void openDetailsForEvent(Event event) {
         final Intent intent = new Intent(this, EventDetailActivity.class);
         intent.putExtra(EventDetailActivity.EXTRA_EVENT_ID, event.getId());
         startActivity(intent);
 
     }
 
-    public void showEvents(List<Event> allEvents) {
+    @Override public void showEvents(List<Event> allEvents) {
         eventListAdapter.clear();
         for (Event event : allEvents) {
             eventListAdapter.addEvent(event);
         }
     }
 
-    public void loadingEventsFailed() {
+    @Override public void loadingEventsFailed() {
         Toast.makeText(this, "Loading events failed", Toast.LENGTH_SHORT)
              .show();
     }
@@ -60,6 +59,8 @@ public class EventListActivity extends AppCompatActivity {
 
         eventService = AndroidAppTestingApp.get(this)
                                            .getEventService();
+
+        eventListPresenter = new EventListPresenter(this, eventService, AndroidSchedulers.mainThread());
         eventListAdapter = new EventListAdapter(this);
         rvEventList = (RecyclerView) findViewById(R.id.rvEventList);
         rvEventList.setLayoutManager(
@@ -71,24 +72,7 @@ public class EventListActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        eventService.getAllEvents()
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Subscriber<List<Event>>() {
-                                   @Override
-                                   public void onCompleted() {
-                                   }
-
-                                   @Override
-                                   public void onError(Throwable e) {
-                                       loadingEventsFailed();
-                                   }
-
-                                   @Override
-                                   public void onNext(List<Event> events) {
-                                       showEvents(events);
-                                   }
-                               }
-                    );
+        eventListPresenter.loadEvents();
     }
 
 

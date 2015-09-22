@@ -1,6 +1,7 @@
 package ch.fork.androidapptesting.app.ui.eventlist;
 
-import org.assertj.core.util.Lists;
+import com.google.common.collect.Lists;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -15,31 +16,43 @@ import ch.fork.androidapptesting.app.model.Event;
 import rx.Observable;
 import rx.schedulers.Schedulers;
 
+import static org.junit.Assert.*;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
- * Created with love by fork on 17.09.15.
+ * Created with love by fork on 22.09.15.
  */
 public class EventListPresenterTest {
 
-    private EventListPresenter testee;
+    @Mock
+    EventService eventService;
 
-    // TODO mocks
+    @Mock
+    EventListView eventListView;
+
     @Before
     public void setup() {
-        // TODO mocks
+        MockitoAnnotations.initMocks(this);
     }
-
     @Test
-    public void when_getting_events_it_shoud_display_them_on_the_view() {
-        // TODO
+    public void test_load_events() {
         // given
+        final Event event = new Event(1, "ZEDays 2015", "ICS Stuttgart", "some description",
+                new Date());
+        List<Event> events = new ArrayList<>();
+        events.add(event);
+
+        when(eventService.getAllEvents())
+                .thenReturn(Observable.just(events));
+        EventListPresenter testee = new EventListPresenter(eventListView, eventService,
+                Schedulers.immediate());
 
         // when
+        testee.loadEvents();
 
         // then
+        verify(eventListView).showEvents(Lists.newArrayList(event));
     }
-
 }
