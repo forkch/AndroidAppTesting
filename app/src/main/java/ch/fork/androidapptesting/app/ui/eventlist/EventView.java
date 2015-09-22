@@ -20,11 +20,11 @@ import ch.fork.androidapptesting.app.model.Event;
  */
 public class EventView extends FrameLayout {
 
-    @Bind(R.id.tvTitle)
+    @Bind(R.id.tvEventTitle)
     TextView tvTitle;
-    @Bind(R.id.location_date)
+    @Bind(R.id.tvEventLocationAndDate)
     TextView tvLocationDate;
-    @Bind(R.id.tvParticipants)
+    @Bind(R.id.tvEventParticipants)
     TextView tvParticipants;
 
     public EventView(Context context) {

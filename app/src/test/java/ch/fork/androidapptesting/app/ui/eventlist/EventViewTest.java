@@ -26,11 +26,11 @@ import static org.assertj.android.api.Assertions.assertThat;
 @Config(constants = BuildConfig.class, sdk = DefaultConfig.EMULATE_SDK, manifest = DefaultConfig.MANIFEST)
 public class EventViewTest {
 
-    @Bind(R.id.tvTitle)
+    @Bind(R.id.tvEventTitle)
     TextView tvTitle;
-    @Bind(R.id.location_date)
+    @Bind(R.id.tvEventLocationAndDate)
     TextView tvLocationDate;
-    @Bind(R.id.tvParticipants)
+    @Bind(R.id.tvEventParticipants)
     TextView tvParticipants;
 
     @Test

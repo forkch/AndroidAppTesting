@@ -18,7 +18,7 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/tvTitle"
+            android:id="@+id/tvEventTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -32,14 +32,14 @@
             android:paddingTop="16dp">
 
             <TextView
-                android:id="@+id/location_date"
+                android:id="@+id/tvEventLocationAndDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/secondary_text"
                 tools:text="Schlieren 12.4.2015" />
 
             <TextView
-                android:id="@+id/tvParticipants"
+                android:id="@+id/tvEventParticipants"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

@@ -8,7 +8,6 @@ import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,17 +34,17 @@ public class EventDetailActivity extends AppCompatActivity implements EventDetai
     public static final String GOOGLE_MAPS_URI_GEO_PREFIX = "geo:0,0?q=";
     @Bind(R.id.toolbar)
     Toolbar toolbar;
-    @Bind(R.id.activity_detail_title)
+    @Bind(R.id.tvEventTitle)
     TextView tvTitle;
-    @Bind(R.id.activity_detail_date)
+    @Bind(R.id.tvEventDate)
     TextView tvDate;
-    @Bind(R.id.activity_detail_location)
+    @Bind(R.id.tvLocation)
     TextView tvLocation;
-    @Bind(R.id.activity_detail_description)
+    @Bind(R.id.tvEventDescription)
     TextView tvDescription;
     private EventDetailPresenter presenter;
 
-    @OnClick(R.id.activity_detail_participate)
+    @OnClick(R.id.btnEventParticipate)
     public void onParticipateClick() {
 
         showUserNameInput(this, R.string.eventdetail_enter_name_title,

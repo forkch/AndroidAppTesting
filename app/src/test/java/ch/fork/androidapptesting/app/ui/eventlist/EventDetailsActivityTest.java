@@ -1,7 +1,6 @@
 package ch.fork.androidapptesting.app.ui.eventlist;
 
 import android.content.Intent;
-import android.view.View;
 import android.widget.TextView;
 
 import org.junit.Test;
@@ -45,7 +44,7 @@ public class EventDetailsActivityTest {
         eventDetailActivity.setEvent(event);
 
         // when
-        final TextView tvLocation = (TextView) eventDetailActivity.findViewById(R.id.activity_detail_location);
+        final TextView tvLocation = (TextView) eventDetailActivity.findViewById(R.id.tvLocation);
         tvLocation.callOnClick();
 
         // then
