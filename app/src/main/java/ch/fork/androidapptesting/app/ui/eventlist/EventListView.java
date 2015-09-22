@@ -12,5 +12,5 @@ public interface EventListView {
 
     void showEvents(List<Event> allEvents);
 
-    void loadingEventsFaild();
+    void loadingEventsFailed();
 }

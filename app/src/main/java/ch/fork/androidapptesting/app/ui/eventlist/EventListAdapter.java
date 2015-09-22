@@ -1,8 +1,6 @@
 package ch.fork.androidapptesting.app.ui.eventlist;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
@@ -13,13 +11,11 @@ import ch.fork.androidapptesting.app.model.Event;
 
 public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.EventViewHolder> {
 
-    private final Context context;
-    private final EventListView eventListView;
+    private final EventListActivity eventListActivity;
     private List<Event> eventList = new ArrayList<>();
 
-    public EventListAdapter(Context context, EventListView eventListView) {
-        this.context = context;
-        this.eventListView = eventListView;
+    public EventListAdapter(EventListActivity eventListActivity) {
+        this.eventListActivity = eventListActivity;
     }
 
     public void clear() {
@@ -33,7 +29,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
 
     @Override
     public EventViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        return new EventViewHolder(new EventView(context));
+        return new EventViewHolder(new EventView(eventListActivity));
     }
 
     @Override
@@ -41,7 +37,7 @@ public class EventListAdapter extends RecyclerView.Adapter<EventListAdapter.Even
         final Event event = eventList.get(i);
 
         eventViewHolder.eventView.setEvent(event);
-        eventViewHolder.eventView.setOnClickListener(v -> eventListView.openDetailsForEvent(event));
+        eventViewHolder.eventView.setOnClickListener(v -> eventListActivity.openDetailsForEvent(event));
 
         eventViewHolder.eventView.setLayoutParams(
                 new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,

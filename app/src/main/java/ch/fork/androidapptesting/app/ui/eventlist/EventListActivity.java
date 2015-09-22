@@ -12,20 +12,22 @@ import java.util.List;
 
 import ch.fork.androidapptesting.R;
 import ch.fork.androidapptesting.app.AndroidAppTestingApp;
+import ch.fork.androidapptesting.app.data.EventService;
 import ch.fork.androidapptesting.app.model.Event;
 import ch.fork.androidapptesting.app.ui.eventdetails.EventDetailActivity;
+import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 
 /**
  * Created by bmu on 01.09.2015.
  */
-public class EventListActivity extends AppCompatActivity implements EventListView {
+public class EventListActivity extends AppCompatActivity {
 
     private EventListPresenter presenter;
     private RecyclerView rvEventList;
     private EventListAdapter eventListAdapter;
+    private EventService eventService;
 
-    @Override
     public void openDetailsForEvent(Event event) {
         final Intent intent = new Intent(this, EventDetailActivity.class);
         intent.putExtra(EventDetailActivity.EXTRA_EVENT_ID, event.getId());
@@ -33,7 +35,6 @@ public class EventListActivity extends AppCompatActivity implements EventListVie
 
     }
 
-    @Override
     public void showEvents(List<Event> allEvents) {
         eventListAdapter.clear();
         for (Event event : allEvents) {
@@ -41,8 +42,7 @@ public class EventListActivity extends AppCompatActivity implements EventListVie
         }
     }
 
-    @Override
-    public void loadingEventsFaild() {
+    public void loadingEventsFailed() {
         Toast.makeText(this, "Loading events failed", Toast.LENGTH_SHORT)
              .show();
     }
@@ -58,11 +58,9 @@ public class EventListActivity extends AppCompatActivity implements EventListVie
             getSupportActionBar().setTitle("Events");
         }
 
-        presenter = new EventListPresenter(this, AndroidAppTestingApp.get(this)
-                                                                     .getEventService(),
-                AndroidSchedulers.mainThread());
-
-        eventListAdapter = new EventListAdapter(this, this);
+        eventService = AndroidAppTestingApp.get(this)
+                                           .getEventService();
+        eventListAdapter = new EventListAdapter(this);
         rvEventList = (RecyclerView) findViewById(R.id.rvEventList);
         rvEventList.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -72,7 +70,25 @@ public class EventListActivity extends AppCompatActivity implements EventListVie
     @Override
     protected void onResume() {
         super.onResume();
-        presenter.loadEvents();
+
+        eventService.getAllEvents()
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Subscriber<List<Event>>() {
+                                   @Override
+                                   public void onCompleted() {
+                                   }
+
+                                   @Override
+                                   public void onError(Throwable e) {
+                                       loadingEventsFailed();
+                                   }
+
+                                   @Override
+                                   public void onNext(List<Event> events) {
+                                       showEvents(events);
+                                   }
+                               }
+                    );
     }
 
 
