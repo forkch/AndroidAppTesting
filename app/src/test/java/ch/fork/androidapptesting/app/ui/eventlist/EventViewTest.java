@@ -19,6 +19,7 @@ import ch.fork.androidapptesting.app.model.Event;
 
 import static org.assertj.android.api.Assertions.assertThat;
 
+
 /**
  * Created with love by fork on 17.09.15.
  */
@@ -26,15 +27,25 @@ import static org.assertj.android.api.Assertions.assertThat;
 @Config(constants = BuildConfig.class, sdk = DefaultConfig.EMULATE_SDK, manifest = DefaultConfig.MANIFEST)
 public class EventViewTest {
 
-    // TODO bind views
+    @Bind(R.id.tvEventTitle)
+    TextView tvTitle;
+    @Bind(R.id.tvEventLocationAndDate)
+    TextView tvLocationDate;
+    @Bind(R.id.tvEventParticipants)
+    TextView tvParticipants;
+
     @Test
     public void when_event_is_set_on_view_it_should_show_event_title() {
         // TODO
         // given
+        final EventView eventView = new EventView(RuntimeEnvironment.application);
+        ButterKnife.bind(this, eventView);
 
         // when
+        eventView.setEvent(new Event(1, "ZEDays 2015", "ICS Stuttgart", "some people", new Date()));
 
         // then
+        assertThat(tvTitle).hasText("ZEDays 2015");
     }
 
     @Test
